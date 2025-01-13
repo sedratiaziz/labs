@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>Add a New Car!</h2>
+
+    <form action="/cars" method="POST">
+        <label for="manufName">Manufacturer</label>
+        <input required id="manufName" type="text" name="manufName">
+        <br>
+        <br>
+        <label for="modelName">Model Name</label>
+        <input required id="modelName" type="text" name="modelName">
+        <br>
+        <br>
+        <label for="year">Year</label>
+        <input required id="year" type="number" name="year">
+        <br>
+        <br>
+        <label for="price">Price</label>
+        <input required id="price" type="number" name="price">
+        <br><br>
+        <button>Add new car</button>
+    </form>
+<br>
+<br>
+    <a href="/cars"><button>Home</button></a>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/cars/<%=foundCar._id%>?_method=PUT" method="post">
+        <label for="textInp">Manufacturer Name</label>
+        <input required type="text" id="textInp" name="manufName">
+        
+        <br><br>
+
+        <label for="textInp">Model Name</label>
+        <input required type="text" id="textInp" name="modelName">
+        
+        <br><br>
+
+        <label for="textInp">Year</label>
+        <input required type="number" id="textInp" name="year">
+        
+        <br><br>
+
+        <label for="textInp">Price (USD)</label>
+        <input required type="number" id="textInp" name="price">
+
+        <br><br>
+
+        <button type="submit">Edit Car</button>
+        
+    </form>
+    
+    <br><br>
+    <br><br>
+    
+    <form action="/cars/<%=foundCar._id%>?_method=DELETE" method="POST">
+        <button>Delete Car</button>
+    </form>
+    <br><br>
+    <br><br>
+    <a href="/cars"><button>Home</button></a>
+</body>
+
+</html>
