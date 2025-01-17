@@ -8,9 +8,10 @@ router.get("/", async (req, res) => {
   res.render("community/index.ejs", { users });
 });
 
-router.get("/show", async (req, res) => {
-    const user = await User.findById(req.session.user._id);
-    res.render("community/show.ejs", { user });
+router.get("/:memberId/show", async (req, res) => {
+    const member = await User.findById(req.params.memberId);
+    console.log(member)
+    res.render("community/show.ejs", { member });
 });
 
 
