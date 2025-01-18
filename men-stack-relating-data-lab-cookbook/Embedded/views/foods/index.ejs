@@ -10,7 +10,7 @@
 <body>
     <%- include('../partials/_navbar.ejs')%>
 
-        <h1>Welcome to my Pantry</h1>
+        <h1>Welcome to your Pantry <%= user.username%></h1>
         <ul>
             <% foods.forEach(food=> { %>
                 <li>

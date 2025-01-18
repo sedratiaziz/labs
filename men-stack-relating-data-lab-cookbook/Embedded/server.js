@@ -46,7 +46,6 @@ app.use(isSignedIn)
 app.use("/users/:userId/foods", foodsController)
 app.use("/users/:userId/community", userController)
 
-
 // ****************************CODE***********************************
 
 app.listen(port, () => {

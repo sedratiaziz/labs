@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const User = require("../models/User");
+const Recipe = require("../models/recipe");
 
 router.get("/", async (req, res) => {
   const user = await User.findById(req.session.user._id);
   const foods = user.pantry;
   console.log(foods);
-  res.render("foods/index.ejs", { foods });
+  res.render("foods/index.ejs", { foods, user });
 });
 
 router.get("/new", async (req, res) => {

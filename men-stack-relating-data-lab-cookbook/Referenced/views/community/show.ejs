@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Pantry</title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs')%>
+
+        <h1>Pantry Items for <%= member.username %></h1>
+        <ul>            
+                <li>                
+                    <h3>
+                        <% member.pantry.forEach(food => {%>                                               
+                                <li><%=food.name%></li>                            
+                        <%})%>
+                    </h3>
+                </li>            
+        </ul>
+</body>
+
+</html>
