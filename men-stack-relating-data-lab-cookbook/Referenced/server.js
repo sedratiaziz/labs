@@ -32,21 +32,29 @@ app.use(
   })
 );
 
+
 // ****************************CODE***********************************
 
-
 app.use(passUserToView)
-app.get("/", (req, res) => { 
+
+app.get("/", (req, res) => {
+  if (req.session.user) {                           //PROBLEM HERE
+    res.redirect(`/users/${req.session.user.username}/recipes`);
+  } else {
     res.render("index.ejs");
+  }
 });
 app.use("/auth", authController)
+
 app.use(isSignedIn)
+
 app.use("/users/:userId/foods", foodsController)
 app.use("/users/:userId/community", userController)
 app.use("/users/:userId/recipes", recipeController)
 app.use("/users/:userId/ingredients", ingredientController)
 
 // ****************************CODE***********************************
+
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

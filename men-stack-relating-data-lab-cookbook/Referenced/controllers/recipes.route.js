@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
   const user = await User.findById(req.session.user._id);
   const recipes = await Recipe.find();
   
-  res.render("recipes/index.ejs", { recipes });
+  res.render("recipes/index.ejs", { recipes, user });
 });
 
 router.get("/new", async (req, res) => {
@@ -21,10 +21,10 @@ router.post("/", async (req, res) => {
     const newRecipe = req.body;
 
     newRecipe.owner = user._id;
-    await Recipe.create(newRecipe);
-    await Recipe.save();
+    await Recipe.create(newRecipe);    
+    await user.save();
 
-    res.redirect("/recipes");
+    res.redirect("/");
   } catch (error) {
     console.log(error);
   }
