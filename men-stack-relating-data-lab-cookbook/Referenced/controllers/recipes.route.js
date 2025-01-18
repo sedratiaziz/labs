@@ -1,69 +1,71 @@
 const express = require("express");
 const router = express.Router();
 
+const User = require("../models/user");
 const Recipe = require("../models/recipe");
 
 router.get("/", async (req, res) => {
   const user = await User.findById(req.session.user._id);
-  const foods = user.pantry;
-  console.log(foods);
-  res.render("foods/index.ejs", { foods, user });
+  const recipes = await Recipe.find();
+  
+  res.render("recipes/index.ejs", { recipes });
 });
 
 router.get("/new", async (req, res) => {
-  res.render("foods/new.ejs");
+  res.render("recipes/new.ejs");
 });
 
 router.post("/", async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id);
-    const newFood = req.body;
+    const newRecipe = req.body;
 
-    user.pantry.push(newFood);
-    await user.save();
+    newRecipe.owner = user._id;
+    await Recipe.create(newRecipe);
+    await Recipe.save();
 
-    res.redirect("/");
+    res.redirect("/recipes");
   } catch (error) {
     console.log(error);
   }
 });
 
-router.delete("/:foodId", async (req, res) => {
-  try {
-    const user = await User.findById(req.session.user._id);
-    user.pantry.id(req.params.foodId).deleteOne();
-    await user.save();
-    res.redirect(`/`);
-  } catch (error) {
-    console.log(error);
-    res.redirect("/");
-  }
-});
+// router.delete("/:foodId", async (req, res) => {
+//   try {
+//     const user = await User.findById(req.session.user._id);
+//     user.pantry.id(req.params.foodId).deleteOne();
+//     await user.save();
+//     res.redirect(`/`);
+//   } catch (error) {
+//     console.log(error);
+//     res.redirect("/");
+//   }
+// });
 
-router.get("/:foodId/edit", async (req, res) => {
-  try {
-    const user = await User.findById(req.session.user._id);
-    const food = user.pantry.id(req.params.foodId);
-    res.render("foods/edit.ejs", {food});
-  } catch (error) {
-    console.log(error);
-    res.redirect("/");
-  }
-});
+// router.get("/:foodId/edit", async (req, res) => {
+//   try {
+//     const user = await User.findById(req.session.user._id);
+//     const food = user.pantry.id(req.params.foodId);
+//     res.render("foods/edit.ejs", {food});
+//   } catch (error) {
+//     console.log(error);
+//     res.redirect("/");
+//   }
+// });
 
-router.put("/:foodId", async (req, res) => {
-  try {
-    const user = await User.findById(req.session.user._id);
-    const food = user.pantry.id(req.params.foodId);
+// router.put("/:foodId", async (req, res) => {
+//   try {
+//     const user = await User.findById(req.session.user._id);
+//     const food = user.pantry.id(req.params.foodId);
 
-    food.set(req.body)
-    await user.save();
+//     food.set(req.body)
+//     await user.save();
     
-    res.redirect(`/users/${currentUser._id}/foods/${req.params.foodId}`);
-  } catch (error) {
-    console.log(error);
-    res.redirect("/");
-  }
-});
+//     res.redirect(`/users/${currentUser._id}/foods/${req.params.foodId}`);
+//   } catch (error) {
+//     console.log(error);
+//     res.redirect("/");
+//   }
+// });
 
 module.exports = router;

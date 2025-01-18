@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Recipes</title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs')%>
+
+        <h1>Welcome to your Recipes <%= user.username%>
+        </h1>
+        <ul>
+            <% recipes.forEach(recipe=> { %>
+                <li>
+                    <h3>
+                        <%= recipe.name %>
+                    </h3>
+                </li>
+
+                <a href="/users/<%= user._id %>/foods/<%= recipes._id%>/edit">edit</a>
+
+                <form action="/users/<%= user._id %>/foods/<%= recipes._id%>?_method=DELETE" method="POST">
+                    <button>delete</button>
+                </form>
+
+                <br><br>
+                <% }) %>
+        </ul>
+        <a href="recipes/new">Add New Recipe</a>
+</body>
+
+</html>
