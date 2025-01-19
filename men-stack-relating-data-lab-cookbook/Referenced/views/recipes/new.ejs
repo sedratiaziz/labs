@@ -14,13 +14,35 @@
 
             <label for="name">Name of Recipe</label>
             <input type="text" id="name" name="name">
-
+<br>
+<br>
             <label for="name">Instructions</label>
             <input type="text" id="name" name="instructions">
-
-            <label for="name">Ingredients of Recipe</label>
-            <input type="text" id="name" name="ingredients">
-
+<br>
+<br>
+            <label for="name">Ingredients of Recipe:</label>
+            <br>
+                <% ingredients.forEach(ingredient => { %>
+                    <input type="checkbox" 
+                    name="ingredients" 
+                    value="<%= ingredient._id %>" 
+                    id="ingredient-<%= ingredient._id %>">
+             <label for="ingredient-<%= ingredient._id %>">
+                 <%= ingredient.name %>
+             </label>
+                <% }) %>
+                <br>
+                <% foods.forEach(food => { %>
+                    <input type="checkbox" 
+                    name="foods" 
+                    value="<%= food._id %>" 
+                    id="food-<%= food._id %>">
+             <label for="food-<%= food._id %>">
+                 <%= food.name %>
+             </label>
+                <% }) %>
+<br>
+<br>
             <button>Add New Recipe</button>
         </form>
 </body>

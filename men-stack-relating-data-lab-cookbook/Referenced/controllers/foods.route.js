@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
     user.pantry.push(newFood);
     await user.save();
 
-    res.redirect("/");
+    res.redirect(`/users/${user._id}/foods`);
   } catch (error) {
     console.log(error);
   }
@@ -33,7 +33,7 @@ router.delete("/:foodId", async (req, res) => {
     const user = await User.findById(req.session.user._id);
     user.pantry.id(req.params.foodId).deleteOne();
     await user.save();
-    res.redirect(`/`);
+    res.redirect(`/users/${user._id}/foods`);
   } catch (error) {
     console.log(error);
     res.redirect("/");
@@ -59,7 +59,7 @@ router.put("/:foodId", async (req, res) => {
     food.set(req.body)
     await user.save();
     
-    res.redirect(`/users/${user._id}/foods/`);
+    res.redirect(`/users/${user._id}/foods`);
   } catch (error) {
     console.log(error);
     res.redirect("/");

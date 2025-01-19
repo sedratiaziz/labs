@@ -13,7 +13,11 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/new", async (req, res) => {
-  res.render("recipes/new.ejs");
+  const user = await User.findById(req.session.user._id);
+  const ingredients = await Ingredient.find();
+  const foods = await user.pantry;
+
+  res.render("recipes/new.ejs", { ingredients, foods });
 });
 
 router.post("/", async (req, res) => {
@@ -63,11 +67,10 @@ router.get("/:recipeId/details", async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id);
     const ingredients = await Ingredient.find();
+    const foods = await user.pantry;
     const recipes = await Recipe.findById(req.params.recipeId).populate('ingredients');
 
-    console.log(ingredients);
-
-    res.render("recipes/details.ejs", {recipes, ingredients, user});
+    res.render("recipes/details.ejs", {recipes, ingredients, user, foods});
     
   } catch (error) {
     console.log(error);
