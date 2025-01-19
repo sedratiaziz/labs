@@ -3,6 +3,7 @@ const router = express.Router();
 
 const User = require("../models/User");
 const Recipe = require("../models/recipe");
+const Ingredient = require("../models/ingredient");
 
 router.get("/", async (req, res) => {
   const user = await User.findById(req.session.user._id);
@@ -56,6 +57,26 @@ router.get("/:recipeId/edit", async (req, res) => {
     res.redirect("/");
   }
 });
+
+
+router.get("/:recipeId/details", async (req, res) => {
+  try {
+    const user = await User.findById(req.session.user._id);
+    const ingredients = await Ingredient.find();
+    const recipes = await Recipe.findById(req.params.recipeId).populate('ingredients');
+
+    console.log(ingredients);
+
+    res.render("recipes/details.ejs", {recipes, ingredients, user});
+    
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+
+});
+
+
 
 router.put("/:recipeId", async (req, res) => {
   try {

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Recipess</title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs')%>
+
+        <h1><%= recipes.name%></h1>
+        <br>
+        <h3>Ingredients</h3>
+        <ul>
+            <% recipes.ingredients.forEach(ingredient => { %>
+                <li>
+                    <%= ingredient.name %>
+                </li>
+                <% }) %> 
+        </ul>
+        <br>
+        <br>
+        <h3>Instructions</h3>
+        <p><%= recipes.instructions %></p>
+        <br>
+        <a href="/">Back</a>
+</body>
+
+</html>

@@ -18,8 +18,13 @@
                     <h3>
                         <%= recipe.name %>
                     </h3>
+                    <a href="/users/<%= user._id %>/recipes/<%= recipe._id%>/details">
+                        <h3>
+                            Details
+                        </h3>
+                    </a>
                 </li>
-
+<br>
                 <a href="/users/<%= user._id %>/recipes/<%= recipe._id%>/edit">edit</a>
 
                 <form action="/users/<%= user._id %>/recipes/<%= recipe._id%>?_method=DELETE" method="POST">
