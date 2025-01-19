@@ -11,13 +11,13 @@
     <form action="/users/<%= user._id %>/recipes/<%= recipe._id%>/?_method=PUT" method="POST">
 
         <label for="name">Name of Recipe</label>
-        <input type="text" id="name" name="name">
+        <input value="<%= recipe.name %>" type="text" id="name" name="name">
         
         <label for="name">Instructions of Recipe</label>
-        <input type="text" id="name" name="instructions">
+        <input value="<%= recipe.instructions %>" type="text" id="name" name="instructions">
         
         <label for="name">Ingredients of Recipe</label>
-        <input type="text" id="name" name="ingredients">
+        <input value="<%= recipe.ingredients %>" type="text" id="name" name="ingredients">
 
         <button>Update</button>
     </form>

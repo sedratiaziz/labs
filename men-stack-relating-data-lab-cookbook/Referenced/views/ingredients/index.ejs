@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Recipes</title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs')%>
+
+        <h1>Welcome to your Ingredients <%= user.username%>
+        </h1>
+        <ul>
+            <% ingredients.forEach(ingredient=> { %>
+                <li>
+                    <h3>
+                        <%= ingredient.name %>
+                    </h3>
+                </li>
+
+                <a href="/users/<%= user._id %>/ingredients/<%= ingredient._id%>/edit">edit</a>
+
+                <form action="/users/<%= user._id %>/ingredients/<%= ingredient._id%>?_method=DELETE" method="POST">
+                    <button>delete</button>
+                </form>
+
+                <br><br>
+                <% }) %>
+        </ul>
+        <a href="ingredients/new">Add New Ingredient</a>
+</body>
+
+</html>

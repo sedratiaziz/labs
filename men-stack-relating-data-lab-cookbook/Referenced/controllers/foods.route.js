@@ -59,7 +59,7 @@ router.put("/:foodId", async (req, res) => {
     food.set(req.body)
     await user.save();
     
-    res.redirect(`/users/${currentUser._id}/foods/${req.params.foodId}`);
+    res.redirect(`/users/${user._id}/foods/`);
   } catch (error) {
     console.log(error);
     res.redirect("/");

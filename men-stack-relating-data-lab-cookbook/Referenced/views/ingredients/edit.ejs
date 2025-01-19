@@ -7,11 +7,12 @@
 </head>
 <body>
     <%- include('../partials/_navbar.ejs')%>
-    <h1>Edit <%= food.name %></h1>
-    <form action="/users/<%= user._id %>/foods/<%= food._id%>/?_method=PUT" method="POST">
+    <h1>Edit <%= ingredient.name %></h1>
+    <form action="/users/<%= user._id %>/ingredients/<%= ingredient._id%>/?_method=PUT" method="POST">
 
-        <label for="name">Name of Food</label>
-        <input value="<%= food.name %>" type="text" id="name" name="name">
+        <label for="name">Name of Ingredient</label>
+        <input value="<%= ingredient.name %>" type="text" id="name" name="name">
+
 
         <button>Update</button>
     </form>
