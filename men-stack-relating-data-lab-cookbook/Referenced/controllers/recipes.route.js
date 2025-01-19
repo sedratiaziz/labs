@@ -15,9 +15,8 @@ router.get("/", async (req, res) => {
 router.get("/new", async (req, res) => {
   const user = await User.findById(req.session.user._id);
   const ingredients = await Ingredient.find();
-  const foods = await user.pantry;
 
-  res.render("recipes/new.ejs", { ingredients, foods });
+  res.render("recipes/new.ejs", { ingredients });
 });
 
 router.post("/", async (req, res) => {
@@ -53,32 +52,15 @@ router.delete("/:recipeId", async (req, res) => {
 
 router.get("/:recipeId/edit", async (req, res) => {
   try {
-    const user = await User.findById(req.session.user._id);
-    const recipe = await Recipe.findById(req.params.recipeId);
-    res.render("recipes/edit.ejs", {recipe});
-  } catch (error) {
-    console.log(error);
-    res.redirect("/");
-  }
-});
-
-
-router.get("/:recipeId/details", async (req, res) => {
-  try {
-    const user = await User.findById(req.session.user._id);
     const ingredients = await Ingredient.find();
-    const foods = await user.pantry;
-    const recipes = await Recipe.findById(req.params.recipeId).populate('ingredients');
+    const recipe = await Recipe.findById(req.params.recipeId);
 
-    res.render("recipes/details.ejs", {recipes, ingredients, user, foods});
-    
+    res.render("recipes/edit.ejs", {recipe, ingredients});
   } catch (error) {
     console.log(error);
     res.redirect("/");
   }
-
 });
-
 
 
 router.put("/:recipeId", async (req, res) => {
@@ -95,6 +77,25 @@ router.put("/:recipeId", async (req, res) => {
     console.log(error);
     res.redirect("/");
   }
+});
+
+
+
+
+router.get("/:recipeId/details", async (req, res) => {
+  try {
+    const user = await User.findById(req.session.user._id);
+    const ingredients = await Ingredient.find();
+    const foods = await user.pantry;
+    const recipes = await Recipe.findById(req.params.recipeId).populate('ingredients');
+
+    res.render("recipes/details.ejs", {recipes, ingredients, user, foods});
+    
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+
 });
 
 module.exports = router;
