@@ -16,7 +16,7 @@ const ingredientController = require("./controllers/ingredients.route.js")
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 
-const port = process.env.PORT ? process.env.PORT : "3000";
+const port = process.env.PORT ? process.env.PORT : "3001";
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
