@@ -23,23 +23,43 @@ const App = () => {
     { name: 'Swiss Cheese', color: '#F1E1A8' },
   ];
 
-  const [stack, setStack] = useState([])
+  const [burgerStack, setBurgerStack] = useState([])
+  const [ingredStack, setIngredStack] = useState(availableIngredients)
 
   function addToBurger(obj) {
-    
+    setBurgerStack([...burgerStack, obj]);
+    removeFromIngred(obj.name)
+
   }
   
-  function removeFromBurger(name) {
-    
+  
+  function removeFromBurger() {  
+    const lastIngredient = burgerStack[burgerStack.length - 1];
+    if (lastIngredient) {
+      setBurgerStack((prevStack) => prevStack.slice(0, -1));
+      addToIngred(lastIngredient);
+    }
+  };
+  
+  
+  function addToIngred(obj) {
+    setIngredStack((prevIngredStack) => [...prevIngredStack, obj]);
   }
+
+
+function removeFromIngred(name) {
+  setIngredStack((prevIngredStack) =>
+    prevIngredStack.filter((ingred) => ingred.name !== name)
+  );
+}
 
 
   return (
     <main>
       <h1>Burger Stacker</h1>
       <section>
-      <BurgerStack layers={availableIngredients} />
-      <IngredientList list={availableIngredients} />
+      <IngredientList list={ingredStack} addToBurger={addToBurger} removeFromIngred={removeFromIngred} />
+      <BurgerStack layers={burgerStack} removeFromBurger={removeFromBurger} />
       </section>
     </main>
   );
