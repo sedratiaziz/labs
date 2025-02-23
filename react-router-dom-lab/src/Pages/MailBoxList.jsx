@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 function MailBoxList(props) {
   let { mailBoxes } = props
@@ -7,10 +8,9 @@ function MailBoxList(props) {
     <>
     <ul>
       {mailBoxes.map((oneMailBox)=>
-        <li>
-          <h3>{oneMailBox._id}</h3>
-          <h3>{oneMailBox.boxSize}</h3>
-          <h3>{oneMailBox.boxOwner}</h3>
+        <li key={oneMailBox._id}>
+          <h3>{oneMailBox.boxOwner}'s MailBox</h3>
+          <Link to={`/mailboxes/${oneMailBox._id}`}>Details</Link>
         </li>
       )}
     </ul>

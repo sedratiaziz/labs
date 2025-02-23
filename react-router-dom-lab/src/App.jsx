@@ -1,8 +1,6 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import { BrowserRouter, redirect, Route, Routes } from 'react-router'
+import { BrowserRouter, Navigate, Route, Routes, useNavigate } from 'react-router'
 import Navbar from './components/Navbar'
 import MailBoxList from './Pages/MailBoxList'
 import MailBoxDetails from './Pages/MailBoxDetails'
@@ -34,20 +32,34 @@ function App() {
       boxOwner: '',
       boxSize: '',
     })
-
-    redirect('/mailboxes')
-    
   }
+
+
+  function findBox(id) {
+    try {
+      const foundMailBox = mailBoxes.find((oneMailBox)=>(
+        oneMailBox._id === Number(id)
+      ))
+      
+      return foundMailBox
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   function handleSubmit(event) {
     event.preventDefault()
     addBox()
   }
   
+  
   function handleChange(event) {
     setFormData({...formData, [event.target.name]:event.target.value})
   }
-
+  console.log("mailBoxes:", mailBoxes); // Debugging step
+  
   return (
     <>
     <BrowserRouter>
@@ -56,7 +68,7 @@ function App() {
       <Routes>
         <Route path='/' element={<main><h1>Post Office</h1></main>} />
         <Route path='/mailboxes' element={<MailBoxList mailBoxes={mailBoxes} /> } />
-        <Route path='/mailboxes/:id' element={<MailBoxDetails /> } />
+        <Route path='/mailboxes/:id' element={<MailBoxDetails findBox={findBox} mailBoxes={mailBoxes} /> } />
         <Route path='/new-mailbox' element={<MailBoxForm handleSubmit={handleSubmit} handleChange={handleChange} formData={formData} /> } />
         <Route path='*' element={<PageNotFound /> } />
       </Routes>
