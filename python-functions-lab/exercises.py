@@ -1,3 +1,64 @@
+
+
+
+
+#           .?77777777777777$.            
+#           777..777777777777$+           
+#          .77    7777777777$$$           
+#          .777 .7777777777$$$$           
+#          .7777777777777$$$$$$           
+#          ..........:77$$$$$$$           
+#   .77777777777777777$$$$$$$$$.=======.  
+#  777777777777777777$$$$$$$$$$.========  
+# 7777777777777777$$$$$$$$$$$$$.========= 
+# 77777777777777$$$$$$$$$$$$$$$.========= 
+# 777777777777$$$$$$$$$$$$$$$$ :========+.
+# 77777777777$$$$$$$$$$$$$$+..=========++~
+# 777777777$$..~=====================+++++
+# 77777777$~.~~~~=~=================+++++.
+# 777777$$$.~~~===================+++++++.
+# 77777$$$$.~~==================++++++++: 
+#  7$$$$$$$.==================++++++++++. 
+#  .,$$$$$$.================++++++++++~.  
+#          .=========~.........           
+#          .=============++++++           
+#          .===========+++..+++           
+#          .==========+++.  .++           
+#           ,=======++++++,,++,           
+#           ..=====+++++++++=.            
+#                 ..~+=...     
+
+
+
+
+
+#   ____        _   _                 
+#  |  _ \ _   _| |_| |__   ___  _ __  
+#  | |_) | | | | __| '_ \ / _ \| '_ \ 
+#  |  __/| |_| | |_| | | | (_) | | | |
+#  |_|    \__, |\__|_| |_|\___/|_| |_|  
+#         |___/                       
+
+
+
+#   _____                 _   _             
+#  |  ___|   _ _ __   ___| |_(_) ___  _ __  
+#  | |_ | | | | '_ \ / __| __| |/ _ \| '_ \ 
+#  |  _|| |_| | | | | (__| |_| | (_) | | | |
+#  |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|
+
+
+
+#   _           _     
+#  | |         | |    
+#  | |     __ _| |__  
+#  | |    / _` | '_ \ 
+#  | |___| (_| | |_) |
+#  \_____/\__,_|_.__/ 
+
+
+
+
 # Exercise 1: Calculate Area of a Triangle
 #
 # Write a function named `calculate_area_triangle` that takes the base and height of a triangle and returns the area.
@@ -14,9 +75,6 @@ def calculate_area_triangle(base, height):
 
 
 print('Exercise 1:', calculate_area_triangle(10, 5))
-
-
-
 
 
 
@@ -227,7 +285,8 @@ print('Exercise 6:', largest(21, 34, 3))
 #
 # Write your function and test its output below.
 
-
+def calculate_tip(bill_amount, tip_perc):
+    return bill_amount * (tip_perc / 100)
 
 print('Exercise 7:', calculate_tip(50, 20))
 
@@ -252,29 +311,25 @@ print('Exercise 7:', calculate_tip(50, 20))
 
 
 
-# # Exercise 8: Calculate Product of Numbers
-# #
-# # Write a function named `product` that takes an arbitrary number of numbers, multiplies them, and returns the product.
-# # Review your notes on *args for handling an arbitrary number of arguments.
-# #
-# # Examples:
-# # product(-1, 4) should return -4.
-# # product(2, 5, 5) should return 50.
-# #
-# # Define the function and call it with different sets of numbers to test.
+# Exercise 8: Calculate Product of Numbers
+#
+# Write a function named `product` that takes an arbitrary number of numbers, multiplies them, and returns the product.
+# Review your notes on *args for handling an arbitrary number of arguments.
+#
+# Examples:
+# product(-1, 4) should return -4.
+# product(2, 5, 5) should return 50.
+#
+# Define the function and call it with different sets of numbers to test.
+def product(*nums):
+    result = 1
+    
+    for num in nums:
+        result *= num
+    
+    return result
 
-
-
-# print('Exercise 8:', product(2, 5, 5))
-
-
-
-
-
-
-
-
-
+print('Exercise 8:', product(2, 5, 5))
 
 
 
@@ -290,22 +345,45 @@ print('Exercise 7:', calculate_tip(50, 20))
 
 
 
-# # Exercise 9: Basic Calculator
-# #
-# # Create a function named `basic_calculator` that takes three arguments: 
-# # two numbers and a string representing an operation ('add', 'subtract', 'multiply', 'divide'). 
-# # Perform the provided operation on the two numbers. In operations where the order of numbers is important, 
-# # treat the first parameter as the first operand and the second parameter as the second operand.
-# #
-# # Examples:
-# # basic_calculator(10, 5, 'subtract') should return 5.
-# # basic_calculator(10, 5, 'add') should return 15.
-# # basic_calculator(10, 5, 'multiply') should return 50.
-# # basic_calculator(10, 5, 'divide') should return 2.
-# #
-# # Define the function and then call it below.
 
 
 
-# print('Exercise 9 Result:', basic_calculator(10, 5, "subtract"))
+
+
+
+
+
+
+# Exercise 9: Basic Calculator
+#
+# Create a function named `basic_calculator` that takes three arguments: 
+# two numbers and a string representing an operation ('add', 'subtract', 'multiply', 'divide'). 
+# Perform the provided operation on the two numbers. In operations where the order of numbers is important, 
+# treat the first parameter as the first operand and the second parameter as the second operand.
+#
+# Examples:
+# basic_calculator(10, 5, 'subtract') should return 5.
+# basic_calculator(10, 5, 'add') should return 15.
+# basic_calculator(10, 5, 'multiply') should return 50.
+# basic_calculator(10, 5, 'divide') should return 2.
+#
+# Define the function and then call it below.
+def basic_calculator(a, b, op):
+    match op:
+        case 'add':
+            return a + b            
+        case 'subtract':
+            return a - b
+        case 'multiply':
+            return a * b
+        case 'divide':
+            return a / b        
+        case 'exponent':
+            return pow(a, b)        
+        case 'modulo':
+            return a % b        
+
+
+
+print('Exercise 9 Result:', basic_calculator(2, 3, "exponent"))
 
